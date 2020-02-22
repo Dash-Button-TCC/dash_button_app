@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:dash_button_app/util/const.dart';
 import 'package:flutter/material.dart';
 
 import 'clipped_view.dart';
@@ -24,7 +25,7 @@ class _NavbarButtonState extends State<NavbarButton> with SingleTickerProviderSt
   AnimationController _iconAnimController;
   bool _wasSelected;
   double _animScale = 1;
-
+  
   @override
   void initState() {
     //Create a tween + controller which will drive the icon rotation
@@ -43,6 +44,8 @@ class _NavbarButtonState extends State<NavbarButton> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
+    Color iconColor = Theme.of(context).primaryColor == Constants.darkPrimary? Colors.white12:Colors.black12;
+    Color boxColor = Theme.of(context).primaryColor  == Constants.darkPrimary? Colors.black12:Colors.white12;
     _startAnimIfSelectedChanged(widget.isSelected);
     //Create our main button, a Row, with an icon and some text
     //Inject the data from our widget.data property
@@ -55,7 +58,7 @@ class _NavbarButtonState extends State<NavbarButton> with SingleTickerProviderSt
           child: Icon(
             widget.data.icon,
             size: 24,
-            color: widget.isSelected ? Colors.white : Color(0xffcccccc),
+            color: widget.isSelected ? Colors.white : widget.data.selectedColor,
           ),
         ),
         //Add some hz spacing
@@ -84,7 +87,7 @@ class _NavbarButtonState extends State<NavbarButton> with SingleTickerProviderSt
           duration: Duration(milliseconds: (700 / _animScale).round()),
           //Use BoxDecoration top create a rounded container
           decoration: BoxDecoration(
-            color: widget.isSelected ? widget.data.selectedColor : Colors.white,
+            color: widget.isSelected ? widget.data.selectedColor : boxColor,
             borderRadius: BorderRadius.all(Radius.circular(24)),
           ),
           //Wrap the row in a ClippedView to suppress any overflow errors if we momentarily exceed the screen size

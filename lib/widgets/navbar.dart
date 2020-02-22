@@ -1,3 +1,5 @@
+import 'package:dash_button_app/util/const.dart';
+
 import 'clipped_view.dart';
 import 'navbar_button.dart';
 import 'package:flutter/material.dart';
@@ -24,14 +26,16 @@ class NavBar extends StatelessWidget {
       });
     }).toList();
 
+    Color shadowColor = Theme.of(context).primaryColor == Constants.darkPrimary?Colors.white12:Colors.black12;
     //Create a container with a row, and add our btn widgets into the row
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        // color: Colors.white,
+        color: Theme.of(context).primaryColor,
         //Add some drop-shadow to our navbar, use 2 for a slightly nicer effect
         boxShadow: [
-          BoxShadow(blurRadius: 16, color: Colors.black12),
-          BoxShadow(blurRadius: 24, color: Colors.black12),
+          BoxShadow(blurRadius: 16, color: shadowColor),
+          BoxShadow(blurRadius: 24, color: shadowColor),
         ],
       ),
       alignment: Alignment.center,

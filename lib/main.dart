@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dash_button_app/screens/main_screen.dart';
 import 'package:dash_button_app/util/const.dart';
+import 'package:shared/env.dart';
 
 void main() async{
   runApp(MyApp());
 }
 
-
 class MyApp extends StatefulWidget {
-  @override
+  static String _pkg = "dash_button_app";
+  static String get pkg => Env.getPackage(_pkg);
 
+  @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isDark = false;
+  bool isDark = true;
 
   @override
   void initState() {
