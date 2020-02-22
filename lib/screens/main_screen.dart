@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:dash_button_app/screens/home.dart';
-import 'package:dash_button_app/widgets/icon_badge.dart';
+import 'package:dash_button_app/widgets/navbar.dart';
+import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -8,71 +10,61 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  PageController _pageController;
-  int _page = 0;
+  List<NavBarItemData> _navBarItems;
+  int _selectedNavIndex = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    Widget barIcon(
-        {IconData icon = Icons.home, int page = 0, bool badge = false}) {
-      return IconButton(
-        icon: badge ? IconBadge(icon: icon, size: 24) : Icon(icon, size: 24),
-        color: _page == page
-            ? Theme.of(context).accentColor
-            : Colors.blueGrey[300],
-        onPressed: () => _pageController.jumpToPage(page),
-      );
-    }
-
-    return Scaffold(
-      floatingActionButton:  new FloatingActionButton(
-        onPressed: (){
-        },
-        child: new Icon(Icons.add),
-      ),
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        onPageChanged: onPageChanged,
-        children: List.generate(4, (index) => Home()),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(width: 7),
-            barIcon(icon: Icons.home, page: 0),
-            barIcon(icon: Icons.favorite, page: 1),
-            barIcon(icon: Icons.history, page: 2),
-            barIcon(icon: Icons.person, page: 3),
-            SizedBox(width: 7),
-          ],
-        ),
-        color: Theme.of(context).primaryColor,
-      ),
-    );
-  }
-
-  void navigationTapped(int page) {
-    _pageController.jumpToPage(page);
-  }
+  List<Widget> _viewsByIndex;
 
   @override
   void initState() {
+    //Declare some buttons for our tab bar
+    _navBarItems = [
+      NavBarItemData("Principal", Icons.home, 150, Color(0xff01b87d)),
+      NavBarItemData("Favoritos", Icons.favorite, 150, Color(0xff594ccf)),
+      NavBarItemData("Histórico", Icons.history, 150, Color(0xff09a8d9)),
+      NavBarItemData("Perfil", Icons.person, 150, Color(0xffcf4c7a)),
+    ];
+
+    //Create the views which will be mapped to the indices for our nav btns
+    _viewsByIndex = <Widget>[
+      Home(),
+      // TODO: Add other screens
+    ];
     super.initState();
-    _pageController = PageController();
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
+  Widget build(BuildContext context) {
+    //Create custom navBar, pass in a list of buttons, and listen for tap event
+    var navBar = NavBar(
+      items: _navBarItems,
+      itemTapped: _handleNavBtnTapped,
+      currentIndex: _selectedNavIndex,
+    );
+    //Display the correct child view for the current index
+    var contentView = _viewsByIndex[min(_selectedNavIndex, _viewsByIndex.length - 1)];
+    //Wrap our custom navbar + contentView with the app Scaffold
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          //Wrap the current page in an AnimatedSwitcher for an easy cross-fade effect
+          child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 350),
+            //Pass the current accent color down as a theme, so our overscroll indicator matches the btn color
+            child: contentView
+          ),
+        ),
+      ),
+      bottomNavigationBar: navBar, //Pass our custom navBar into the scaffold
+    );
   }
 
-  void onPageChanged(int page) {
+  void _handleNavBtnTapped(int index) {
+    //Save the new index and trigger a rebuild
     setState(() {
-      this._page = page;
+      //This will be passed into the NavBar and change it's selected state, also controls the active content page
+      _selectedNavIndex = index;
     });
   }
 }

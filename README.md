@@ -2,6 +2,8 @@
 
 Aplicação Mobile do trabalho de conclusão de curso de Edimar Calebe Castanho e Gabriel Chaves Borges.
 
+![](screenshots/DashButtonAppPreview.gif)
+
 Esta aplicação está em desenvolvimento...
 
 # Screenshots
