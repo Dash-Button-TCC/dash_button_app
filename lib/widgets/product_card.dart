@@ -9,7 +9,7 @@ import 'package:dash_button_app/util/demo_data.dart';
 
 class ProductListCard extends StatefulWidget {
   static double nominalHeightClosed = 96;
-  static double nominalHeightOpen = 290;
+  static double nominalHeightOpen = 240;
 
   final Function(ProductData) onTap;
 
@@ -199,7 +199,7 @@ class _ProductListCardState extends State<ProductListCard> with TickerProviderSt
         ),
         SizedBox(height: 16),
         Text(
-          "Redeem your points for a cup of happiness! Our signature espresso is blanced with steamed milk and topped with a light layer of foam. ",
+          "Este produto foi comprado com sucesso, e chagará na sua casa em até 15 minutos.",
           textAlign: TextAlign.center,
           style: Styles.text(14, Colors.white, false, height: 1.5),
         ),
@@ -216,7 +216,7 @@ class _ProductListCardState extends State<ProductListCard> with TickerProviderSt
               color: AppColors.orangeAccent,
               disabledColor: AppColors.orangeAccent,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-              child: Text("REDEEM", style: Styles.text(16, Colors.white, true)),
+              child: Text("Comprar", style: Styles.text(16, Colors.white, true)),
             ),
           ),
         )
