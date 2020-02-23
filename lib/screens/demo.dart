@@ -5,7 +5,7 @@ import 'package:dash_button_app/main.dart';
 import 'package:dash_button_app/widgets/syles.dart';
 import 'package:dash_button_app/util/demo_data.dart';
 import 'package:dash_button_app/widgets/rounded_shadow.dart';
-import 'package:dash_button_app/widgets/drink_card.dart';
+import 'package:dash_button_app/widgets/product_card.dart';
 
 class DemoProductsList extends StatefulWidget {
   @override
@@ -16,13 +16,13 @@ class _DemoProductsListState extends State<DemoProductsList> {
   double _listPadding = 20;
   ProductData _selectedProduct;
   // ScrollController _scrollController = ScrollController();
-  List<ProductData>_drinks;
+  List<ProductData>_products;
   int _earnedPoints;
 
   @override
   void initState() {
     var demoData = DemoData();
-    _drinks = demoData.drinks;
+    _products = demoData.products;
     _earnedPoints = demoData.earnedPoints;
     super.initState();
   }
@@ -43,7 +43,7 @@ class _DemoProductsListState extends State<DemoProductsList> {
       primary: false,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: _drinks.length,
+      itemCount: _products.length,
       scrollDirection: Axis.vertical,
       // controller: _scrollController,
       itemBuilder: (context, index) => _buildListItem(index),
@@ -55,8 +55,8 @@ class _DemoProductsListState extends State<DemoProductsList> {
       margin: EdgeInsets.symmetric(vertical: _listPadding / 2, horizontal: _listPadding),
       child: ProductListCard(
         earnedPoints: _earnedPoints,
-        drinkData: _drinks[index],
-        isOpen: _drinks[index] == _selectedProduct,
+        productData: _products[index],
+        isOpen: _products[index] == _selectedProduct,
         onTap: _handleProductTapped,
       ),
     );
@@ -106,14 +106,14 @@ class _DemoProductsListState extends State<DemoProductsList> {
 
   void _handleProductTapped(ProductData data) {
     setState(() {
-      //If the same drink was tapped twice, un-select it
+      //If the same product was tapped twice, un-select it
       if (_selectedProduct == data) {
         _selectedProduct = null;
       }
-      //Open tapped drink card and scroll to it
+      //Open tapped product card and scroll to it
       else {
         _selectedProduct = data;
-        var selectedIndex = _drinks.indexOf(_selectedProduct);
+        var selectedIndex = _products.indexOf(_selectedProduct);
         var closedHeight = ProductListCard.nominalHeightClosed;
         //Calculate scrollTo offset, subtract a bit so we don't end up perfectly at the top
         var offset = selectedIndex * (closedHeight + _listPadding) - closedHeight * .35;

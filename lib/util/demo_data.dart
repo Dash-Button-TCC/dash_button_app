@@ -12,8 +12,8 @@ class DemoData{
   //how many points this user has earned, in a real app this would be loaded from an online service.
   int earnedPoints = 150;
 
-  //List of available drinks
-  List<ProductData> drinks = [
+  //List of available products
+  List<ProductData> products = [
     ProductData("Salgadinho Doritos", 100, "assets/products/doritos.png"),
     ProductData("Refrigerante Coca Cola", 150, "assets/products/coca-cola_2l_.png"),
     ProductData("Detergente Ype", 250, "assets/products/ype.jpg"),
