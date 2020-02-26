@@ -2,7 +2,9 @@
 
 Aplicação Mobile do trabalho de conclusão de curso de Edimar Calebe Castanho e Gabriel Chaves Borges.
 
-![](screenshots/DashButtonAppPreview.gif)
+<p align="center">
+  <img src="screenshots/DashButtonAppPreviewCards.gif" />
+</p>
 
 Esta aplicação está em desenvolvimento...
 
@@ -10,8 +12,7 @@ Esta aplicação está em desenvolvimento...
 
 | Dark Mode | Light Mode |
 |:---------:|:----------:|
-| <img src="screenshots/home_dark.png" width="400"> | <img src="screenshots/home_light.png" width="400"> |
-| <img src="screenshots/details_dark.png" width="400"> | <img src="screenshots/details_light.png" width="400"> |
+| <img src="screenshots/dark_mode.png" width="400"> | <img src="screenshots/light_mode.png" width="400"> |
 
 # Agradecimentos
 

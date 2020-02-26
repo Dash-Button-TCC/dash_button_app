@@ -1,7 +1,6 @@
+import 'package:dash_button_app/screens/demo.dart';
 import 'package:flutter/material.dart';
-import 'package:dash_button_app/screens/details.dart';
 import 'package:dash_button_app/widgets/icon_badge.dart';
-import 'package:dash_button_app/util/places.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,7 +9,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final TextEditingController _searchControl = new TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,6 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-
 
           Padding(
             padding: EdgeInsets.all(20),
@@ -88,116 +85,8 @@ class _HomeState extends State<Home> {
           ),
 
           Padding(
-            padding: EdgeInsets.all(20),
-            child: ListView.builder(
-              primary: false,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: places == null ? 0 : places.length,
-              itemBuilder: (BuildContext context, int index) {
-                Map place = places[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom:15.0),
-                  child: InkWell(
-                    child: Container(
-                      height: 70,
-//                    color: Colors.red,
-                      child: Row(
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Image.asset(
-                              "${place["img"]}",
-                              height: 70,
-                              width: 70,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-
-                          SizedBox(width: 15),
-
-                          Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width-130,
-                            child: ListView(
-                              primary: false,
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "${place["name"]}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                    ),
-                                    maxLines: 2,
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ),
-
-                                SizedBox(height: 3),
-                                Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.location_on,
-                                      size: 13,
-                                      color: Colors.blueGrey[300],
-                                    ),
-
-                                    SizedBox(width: 3),
-
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "${place["location"]}",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                          color: Colors.blueGrey[300],
-                                        ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(height: 10),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "${place["price"]}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                    maxLines: 1,
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    ),
-                    onTap: (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context){
-                            return Details();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
+            padding: EdgeInsets.all(1),
+            child: DemoProductsList()
           ),
 
         ],

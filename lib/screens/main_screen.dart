@@ -1,7 +1,7 @@
 import 'dart:math';
-
 import 'package:dash_button_app/screens/content_box.dart';
 import 'package:dash_button_app/screens/gallery_page.dart';
+import 'package:dash_button_app/screens/demo.dart';
 import 'package:dash_button_app/screens/home.dart';
 import 'package:dash_button_app/screens/likes_page.dart';
 import 'package:dash_button_app/screens/qr_code_scan.dart';
