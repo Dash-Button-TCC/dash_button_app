@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dash_button_app/screens/demo.dart';
 import 'package:dash_button_app/screens/home.dart';
 import 'package:dash_button_app/widgets/navbar.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
     //Create the views which will be mapped to the indices for our nav btns
     _viewsByIndex = <Widget>[
       Home(),
+      DemoProductsList()
       // TODO: Add other screens
     ];
     super.initState();
