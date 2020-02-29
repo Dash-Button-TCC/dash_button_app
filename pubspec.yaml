@@ -18,9 +18,11 @@ environment:
 
 dependencies:
   qr_code_scanner: ^0.0.12
+  flutter_svg: ^0.17.2
+
   flutter:
     sdk: flutter
-  
+
   shared:
     path: _shared/
 
@@ -47,6 +49,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/products/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
